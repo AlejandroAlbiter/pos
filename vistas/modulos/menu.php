@@ -6,7 +6,22 @@
 
 		<?php
 
-		if($_SESSION["perfil"] == "Administrador"){
+		if($_SESSION["perfil"] == "Administrador"|| $_SESSION["perfil"] == "Vendedor"){
+
+			echo '<li class="active">
+
+				<a href="inicio">
+
+					<i class="fa fa-home"></i>
+					<span>Inicio</span>
+
+				</a>
+
+			</li>';
+
+		}
+
+		if ($_SESSION["perfil"] == "Administrador") {
 
 			echo '<li class="active">
 
@@ -19,7 +34,7 @@
 
 			</li>
 
-			<li>
+			<li class="active">
 
 				<a href="usuarios">
 
@@ -29,28 +44,27 @@
 				</a>
 
 			</li>';
-
 		}
 
 		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Especial"){
 
-			echo '<li>
+			echo '<li class="active">
 
 				<a href="categorias">
 
 					<i class="fa fa-th"></i>
-					<span>Categorías</span>
+					<span>Sucursales</span>
 
 				</a>
 
 			</li>
 
-			<li>
+			<li class="active">
 
-				<a href="productos">
+				<a href="productos" >
 
 					<i class="fa fa-product-hunt"></i>
-					<span>Productos</span>
+					<span>Tipos de Movimientos</span>
 
 				</a>
 
@@ -58,14 +72,14 @@
 
 		}
 
-		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor"){
+		if( $_SESSION["perfil"] == "Vendedor"){
 
 			echo '<li>
 
-				<a href="clientes">
+				<a href="clientes" class="active">
 
 					<i class="fa fa-users"></i>
-					<span>Clientes</span>
+					<span>Contactos</span>
 
 				</a>
 
@@ -73,15 +87,15 @@
 
 		}
 
-		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor"){
+		if( $_SESSION["perfil"] == "Vendedor"){
 
 			echo '<li class="treeview">
 
-				<a href="#">
+				<a href="#" class="active">
 
 					<i class="fa fa-list-ul"></i>
 					
-					<span>Ventas</span>
+					<span>Transacciones</span>
 					
 					<span class="pull-right-container">
 					
@@ -98,7 +112,7 @@
 						<a href="ventas">
 							
 							<i class="fa fa-circle-o"></i>
-							<span>Administrar ventas</span>
+							<span>Transacciones</span>
 
 						</a>
 
@@ -109,7 +123,7 @@
 						<a href="crear-venta">
 							
 							<i class="fa fa-circle-o"></i>
-							<span>Crear venta</span>
+							<span>Nueva Trsnsaccion</span>
 
 						</a>
 
@@ -122,7 +136,7 @@
 						<a href="reportes">
 							
 							<i class="fa fa-circle-o"></i>
-							<span>Reporte de ventas</span>
+							<span>Reporte de Transacciones</span>
 
 						</a>
 
@@ -136,6 +150,51 @@
 
 			</li>';
 
+		}
+
+		if (
+			 $_SESSION["perfil"] == "Administrador"
+		) {
+
+			echo '<li class="treeview">
+
+				<a href="#" class="active">
+
+					<i class="fa fa-list-ul"></i>
+					
+					<span>Transacciones</span>
+					
+					<span class="pull-right-container">
+					
+						<i class="fa fa-angle-left pull-right"></i>
+
+					</span>
+
+				</a>
+
+				<ul class="treeview-menu">
+					
+					';
+
+			if ($_SESSION["perfil"] == "Administrador") {
+
+				echo '<li>
+
+						<a href="reportes">
+							
+							<i class="fa fa-circle-o"></i>
+							<span>Reporte de Transacciones</span>
+
+						</a>
+
+					</li>';
+			}
+
+
+
+			echo '</ul>
+
+			</li>';
 		}
 
 		?>

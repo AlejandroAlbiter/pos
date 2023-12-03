@@ -102,7 +102,7 @@ MODAL AGREGAR PRODUCTO
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar producto</h4>
+          <h4 class="modal-title">Nueva Transaccion</h4>
 
         </div>
 
@@ -199,7 +199,7 @@ MODAL AGREGAR PRODUCTO
                   
                     <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span> 
 
-                    <input type="number" class="form-control input-lg" id="nuevoPrecioCompra" name="nuevoPrecioCompra" step="any" min="0" placeholder="Precio de compra" required>
+                    <input type="number" class="form-control input-lg" id="nuevoPrecioCompra" name="nuevoPrecioCompra" step="any" min="0" placeholder="Cantidad" required>
 
                   </div>
 
@@ -213,7 +213,7 @@ MODAL AGREGAR PRODUCTO
                   
                     <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span> 
 
-                    <input type="number" class="form-control input-lg" id="nuevoPrecioVenta" name="nuevoPrecioVenta" step="any" min="0" placeholder="Precio de venta" required>
+                    <input type="number" class="form-control input-lg" id="nuevoPrecioVenta" name="nuevoPrecioVenta" step="any" min="0" placeholder="Cantidad" required>
 
                   </div>
                 
@@ -255,7 +255,7 @@ MODAL AGREGAR PRODUCTO
 
             <!-- ENTRADA PARA SUBIR FOTO -->
 
-             <div class="form-group">
+             <!-- <div class="form-group">
               
               <div class="panel">SUBIR IMAGEN</div>
 
@@ -265,7 +265,7 @@ MODAL AGREGAR PRODUCTO
 
               <img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
 
-            </div>
+            </div> -->
 
           </div>
 
@@ -279,7 +279,7 @@ MODAL AGREGAR PRODUCTO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar producto</button>
+          <button type="submit" class="btn btn-primary">Guardar Transaccion</button>
 
         </div>
 
@@ -318,7 +318,7 @@ MODAL EDITAR PRODUCTO
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar producto</h4>
+          <h4 class="modal-title">Editar Transaccion</h4>
 
         </div>
 
@@ -457,7 +457,7 @@ MODAL EDITAR PRODUCTO
 
             <!-- ENTRADA PARA SUBIR FOTO -->
 
-             <div class="form-group">
+             <!-- <div class="form-group">
               
               <div class="panel">SUBIR IMAGEN</div>
 
@@ -469,7 +469,7 @@ MODAL EDITAR PRODUCTO
 
               <input type="hidden" name="imagenActual" id="imagenActual">
 
-            </div>
+            </div> -->
 
           </div>
 

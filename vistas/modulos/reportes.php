@@ -19,7 +19,7 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
     
     <h1>
       
-      Reportes de ventas
+      Reporte de Transacciones
     
     </h1>
 
@@ -27,7 +27,7 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Reportes de ventas</li>
+      <li class="active">Reporte de Transacciones</li>
     
     </ol>
 
@@ -69,7 +69,7 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
 
         ?>
            
-           <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button>
+           <button class="btn btn-success" style="margin-top:5px">Descargar reporte XML</button>
 
           </a>
 

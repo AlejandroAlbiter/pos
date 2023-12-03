@@ -46,7 +46,7 @@ VENDEDORES
 	
 	<div class="box-header with-border">
     
-    	<h3 class="box-title">Compradores</h3>
+    	<h3 class="box-title">Contactos Frecuentes</h3>
   
   	</div>
 

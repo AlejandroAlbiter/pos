@@ -19,7 +19,7 @@ if($_SESSION["perfil"] == "Especial"){
     
     <h1>
       
-      Administrar ventas
+      Administrar Transacciones
     
     </h1>
 
@@ -27,7 +27,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar ventas</li>
+      <li class="active">Administrar Transacciones</li>
     
     </ol>
 
@@ -43,7 +43,7 @@ if($_SESSION["perfil"] == "Especial"){
 
           <button class="btn btn-primary">
             
-            Agregar venta
+            Nueva Transaccion
 
           </button>
 
@@ -70,12 +70,12 @@ if($_SESSION["perfil"] == "Especial"){
          <tr>
            
            <th style="width:10px">#</th>
-           <th>Código factura</th>
-           <th>Cliente</th>
-           <th>Vendedor</th>
-           <th>Forma de pago</th>
-           <th>Neto</th>
-           <th>Total</th> 
+           <th>Código</th>
+           <th>Destinatario</th>
+           <th>Usuario</th>
+           <th>Metodo</th>
+           <!-- <th>Neto</th> -->
+           <th>Cantidad</th> 
            <th>Fecha</th>
            <th>Acciones</th>
 
@@ -125,7 +125,6 @@ if($_SESSION["perfil"] == "Especial"){
 
                   <td>'.$value["metodo_pago"].'</td>
 
-                  <td>$ '.number_format($value["neto"],2).'</td>
 
                   <td>$ '.number_format($value["total"],2).'</td>
 
@@ -137,17 +136,17 @@ if($_SESSION["perfil"] == "Especial"){
                         
                       <button class="btn btn-info btnImprimirFactura" codigoVenta="'.$value["codigo"].'">
 
-                        <i class="fa fa-print"></i>
+                        <i class="fa fa-print"> Descargar Comprobante</i>
 
                       </button>';
 
-                      if($_SESSION["perfil"] == "Administrador"){
+                    //   if($_SESSION["perfil"] == "Administrador"){
 
-                      echo '<button class="btn btn-warning btnEditarVenta" idVenta="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+                    //   echo '<button class="btn btn-warning btnEditarVenta" idVenta="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
 
-                      <button class="btn btn-danger btnEliminarVenta" idVenta="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+                    //   <button class="btn btn-danger btnEliminarVenta" idVenta="'.$value["id"].'"><i class="fa fa-times"></i></button>';
 
-                    }
+                    // }
 
                     echo '</div>  
 

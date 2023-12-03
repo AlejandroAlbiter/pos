@@ -482,99 +482,168 @@ class ControladorVentas{
 	DESCARGAR EXCEL
 	=============================================*/
 
-	public function ctrDescargarReporte(){
+	// public function ctrDescargarReporte(){
 
-		if(isset($_GET["reporte"])){
+	// 	if(isset($_GET["reporte"])){
+
+	// 		$tabla = "ventas";
+
+	// 		if(isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])){
+
+	// 			$ventas = ModeloVentas::mdlRangoFechasVentas($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
+
+	// 		}else{
+
+	// 			$item = null;
+	// 			$valor = null;
+
+	// 			$ventas = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
+
+	// 		}
+
+
+	// 		/*=============================================
+	// 		CREAMOS EL ARCHIVO DE EXCEL
+	// 		=============================================*/
+
+	// 		$Name = $_GET["reporte"].'.xls';
+
+	// 		header('Expires: 0');
+	// 		header('Cache-control: private');
+	// 		header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
+	// 		header("Cache-Control: cache, must-revalidate"); 
+	// 		header('Content-Description: File Transfer');
+	// 		header('Last-Modified: '.date('D, d M Y H:i:s'));
+	// 		header("Pragma: public"); 
+	// 		header('Content-Disposition:; filename="'.$Name.'"');
+	// 		header("Content-Transfer-Encoding: binary");
+
+	// 		echo utf8_decode("<table border='0'> 
+
+	// 				<tr> 
+	// 				<td style='font-weight:bold; border:1px solid #eee;'>CÓDIGO</td> 
+	// 				<td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
+	// 				<td style='font-weight:bold; border:1px solid #eee;'>VENDEDOR</td>
+	// 				<td style='font-weight:bold; border:1px solid #eee;'>CANTIDAD</td>
+	// 				<td style='font-weight:bold; border:1px solid #eee;'>PRODUCTOS</td>
+	// 				<td style='font-weight:bold; border:1px solid #eee;'>IMPUESTO</td>
+	// 				<td style='font-weight:bold; border:1px solid #eee;'>NETO</td>		
+	// 				<td style='font-weight:bold; border:1px solid #eee;'>TOTAL</td>		
+	// 				<td style='font-weight:bold; border:1px solid #eee;'>METODO DE PAGO</td	
+	// 				<td style='font-weight:bold; border:1px solid #eee;'>FECHA</td>		
+	// 				</tr>");
+
+	// 		foreach ($ventas as $row => $item){
+
+	// 			$cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+	// 			$vendedor = ControladorUsuarios::ctrMostrarUsuarios("id", $item["id_vendedor"]);
+
+	// 		 echo utf8_decode("<tr>
+	// 		 			<td style='border:1px solid #eee;'>".$item["codigo"]."</td> 
+	// 		 			<td style='border:1px solid #eee;'>".$cliente["nombre"]."</td>
+	// 		 			<td style='border:1px solid #eee;'>".$vendedor["nombre"]."</td>
+	// 		 			<td style='border:1px solid #eee;'>");
+
+	// 		 	$productos =  json_decode($item["productos"], true);
+
+	// 		 	foreach ($productos as $key => $valueProductos) {
+			 			
+	// 		 			echo utf8_decode($valueProductos["cantidad"]."<br>");
+	// 		 		}
+
+	// 		 	echo utf8_decode("</td><td style='border:1px solid #eee;'>");	
+
+	// 	 		foreach ($productos as $key => $valueProductos) {
+			 			
+	// 	 			echo utf8_decode($valueProductos["descripcion"]."<br>");
+		 		
+	// 	 		}
+
+	// 	 		echo utf8_decode("</td>
+	// 				<td style='border:1px solid #eee;'>$ ".number_format($item["impuesto"],2)."</td>
+	// 				<td style='border:1px solid #eee;'>$ ".number_format($item["neto"],2)."</td>	
+	// 				<td style='border:1px solid #eee;'>$ ".number_format($item["total"],2)."</td>
+	// 				<td style='border:1px solid #eee;'>".$item["metodo_pago"]."</td>
+	// 				<td style='border:1px solid #eee;'>".substr($item["fecha"],0,10)."</td>		
+	// 	 			</tr>");
+
+
+	// 		}
+
+
+	// 		echo "</table>";
+
+	// 	}
+
+	// }
+
+	public function ctrDescargarReporte()
+	{
+
+		if (isset($_GET["reporte"])) {
 
 			$tabla = "ventas";
 
-			if(isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])){
+			if (isset($_GET["fechaInicial"]) && isset($_GET["fechaFinal"])) {
 
 				$ventas = ModeloVentas::mdlRangoFechasVentas($tabla, $_GET["fechaInicial"], $_GET["fechaFinal"]);
-
-			}else{
+			} else {
 
 				$item = null;
 				$valor = null;
 
 				$ventas = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
-
 			}
 
+			// Definimos el nombre del archivo XML
+			$Name = $_GET["reporte"] . '.xml';
 
-			/*=============================================
-			CREAMOS EL ARCHIVO DE EXCEL
-			=============================================*/
+			// Cabecera para indicar que se va a descargar un archivo XML
+			header('Content-Type: application/xml');
+			header('Content-Disposition: attachment; filename="' . $Name . '"');
 
-			$Name = $_GET["reporte"].'.xls';
+			// Creamos el documento XML
+			$xml = new SimpleXMLElement('<ventas></ventas>');
 
-			header('Expires: 0');
-			header('Cache-control: private');
-			header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
-			header("Cache-Control: cache, must-revalidate"); 
-			header('Content-Description: File Transfer');
-			header('Last-Modified: '.date('D, d M Y H:i:s'));
-			header("Pragma: public"); 
-			header('Content-Disposition:; filename="'.$Name.'"');
-			header("Content-Transfer-Encoding: binary");
-
-			echo utf8_decode("<table border='0'> 
-
-					<tr> 
-					<td style='font-weight:bold; border:1px solid #eee;'>CÓDIGO</td> 
-					<td style='font-weight:bold; border:1px solid #eee;'>CLIENTE</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>VENDEDOR</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>CANTIDAD</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>PRODUCTOS</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>IMPUESTO</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>NETO</td>		
-					<td style='font-weight:bold; border:1px solid #eee;'>TOTAL</td>		
-					<td style='font-weight:bold; border:1px solid #eee;'>METODO DE PAGO</td	
-					<td style='font-weight:bold; border:1px solid #eee;'>FECHA</td>		
-					</tr>");
-
-			foreach ($ventas as $row => $item){
+			foreach ($ventas as $row => $item) {
 
 				$cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
 				$vendedor = ControladorUsuarios::ctrMostrarUsuarios("id", $item["id_vendedor"]);
 
-			 echo utf8_decode("<tr>
-			 			<td style='border:1px solid #eee;'>".$item["codigo"]."</td> 
-			 			<td style='border:1px solid #eee;'>".$cliente["nombre"]."</td>
-			 			<td style='border:1px solid #eee;'>".$vendedor["nombre"]."</td>
-			 			<td style='border:1px solid #eee;'>");
+				$venta = $xml->addChild('venta');
+				$venta->addChild('codigo', $item['codigo']);
+				$venta->addChild('cliente', $cliente['nombre']);
+				$venta->addChild('vendedor', $vendedor['nombre']);
 
-			 	$productos =  json_decode($item["productos"], true);
+				$productos = json_decode($item["productos"],
+					true
+				);
 
-			 	foreach ($productos as $key => $valueProductos) {
-			 			
-			 			echo utf8_decode($valueProductos["cantidad"]."<br>");
-			 		}
+				$cantidadProductos = '';
+				$descripcionProductos = '';
 
-			 	echo utf8_decode("</td><td style='border:1px solid #eee;'>");	
+				foreach ($productos as $key => $valueProductos) {
+					$cantidadProductos .= $valueProductos["cantidad"] . "\n";
+					$descripcionProductos .= $valueProductos["descripcion"] . "\n";
+				}
 
-		 		foreach ($productos as $key => $valueProductos) {
-			 			
-		 			echo utf8_decode($valueProductos["descripcion"]."<br>");
-		 		
-		 		}
-
-		 		echo utf8_decode("</td>
-					<td style='border:1px solid #eee;'>$ ".number_format($item["impuesto"],2)."</td>
-					<td style='border:1px solid #eee;'>$ ".number_format($item["neto"],2)."</td>	
-					<td style='border:1px solid #eee;'>$ ".number_format($item["total"],2)."</td>
-					<td style='border:1px solid #eee;'>".$item["metodo_pago"]."</td>
-					<td style='border:1px solid #eee;'>".substr($item["fecha"],0,10)."</td>		
-		 			</tr>");
-
-
+				$venta->addChild('cantidad', $cantidadProductos);
+				$venta->addChild('productos', $descripcionProductos);
+				$venta->addChild('impuesto', number_format($item["impuesto"], 2));
+				$venta->addChild('neto', number_format($item["neto"], 2));
+				$venta->addChild('total', number_format($item["total"], 2));
+				$venta->addChild('metodo_pago', $item["metodo_pago"]);
+				$venta->addChild('fecha', substr($item["fecha"], 0, 10));
 			}
 
+			// Encabezado XML
+			$dom = dom_import_simplexml($xml)->ownerDocument;
+			$dom->formatOutput = true;
 
-			echo "</table>";
-
+			// Imprimimos el XML
+			echo $dom->saveXML();
+			exit(); // Finalizamos para evitar que se imprima cualquier otra cosa
 		}
-
 	}
 
 
